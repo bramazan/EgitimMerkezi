@@ -1,0 +1,19 @@
+﻿@if (HttpContext.Current.Session["eposta"] != null)
+{
+    <li><a>Hoş Geldiniz , <strong>@EgtMerkezi.Controllers.HomeController.OgrenciBilgiGetir(HttpContext.Current.Session["eposta"].ToString())</strong></a></li>
+    <li>@Html.ActionLink("Çıkış", "Cikis", "Home")</li>
+}
+else
+{
+    <li>@Html.ActionLink(EgtMerkezi.Resources.lang.UyeOl, "Register", "Home", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li>@Html.ActionLink(EgtMerkezi.Resources.lang.UyeGiris, "Login", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+}
+
+@if (HttpContext.Current.Session["Culture"].ToString() == "tr")
+{
+    <li>@Html.ActionLink("English", "ChangeCulture", "Home", new { lang = "en", returnurl = this.Request.RawUrl }, null)</li>
+}
+else
+{
+    <li>@Html.ActionLink("Türkçe", "ChangeCulture", "Home", new { lang = "tr", returnUrl = this.Request.RawUrl }, null)</li>
+}

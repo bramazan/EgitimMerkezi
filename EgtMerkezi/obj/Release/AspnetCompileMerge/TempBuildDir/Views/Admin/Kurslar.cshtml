@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Kurslar";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="~/assets/plugins/form-select2/select2.css" rel="stylesheet" />
+<script src="~/assets/plugins/form-select2/select2.min.js"></script>
+
+@model List<EgtMerkezi.Models.Kurs>
+
+<div class="panel panel-gray">
+    <div class="panel-heading">
+        <div class="col-md-12">
+            <h4>KURSLAR</h4>
+            <a href="javascript:;" data-toggle="tooltip modal" data-width="4" data-source="/Admin/KursEkle" data-title="Yeni Kurs" data-function="CloseModal" class="btn btn-success btn-sm tooltips pull-right" style="margin-top:6px;" title="Yeni Kurs"><i class="fa fa-plus">&nbsp;&nbsp; Yeni Kurs</i></a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">Fotoğraf</th>
+                            <th class="col-md-2">Kurs Adı</th>
+                            <th class="col-md-3">Başlangıç- Bitiş</th>
+                            <th class="col-md-2">Süre</th>
+                            <th class="col-md-1">Ücret</th>
+                            <th class="col-md-1">Toplam Saat</th>
+                            <th class="col-md-2">Öğretim Elemanı</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    @if (item.Foto == null)
+                                    {
+                                        <td><img style='width:100%; height:auto; border:solid 1px #cccccc;' src="~/assets/img/resimyok.png" alt="" /></td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <img style='width:100%; height:auto; border:solid 1px #cccccc;' src="data:image/png;base64,@System.Convert.ToBase64String(item.Foto)" />
+                                        </td>
+                                    }
+                                    <td>@item.KursAd</td>
+                                    <td>@String.Format("{0:d}", @item.BaslangicTarihi)  - @String.Format("{0:d}", @item.BitisTarihi)</td>
+                                    <td>@item.Sure</td>
+                                    <td>@String.Format("{0:c0}", @item.Ucret)</td>
+                                    <td>@item.ToplamSaat</td>
+                                    <td>@item.OgretimElemani.Ad @item.OgretimElemani.Soyad</td>
+                                    <td><a href='javascript:;' data-toggle='tooltip modal' data-source="/Admin/KursDuzenle?KursID=@item.KursId" data-title='Kurs Düzenle' data-function='CloseModal' data-width='4' class='btn btn-xs btn-info tooltips' title='Düzenle'>Düzenle</a></td>
+                                    <td><a href="/Admin/KursSil?KursID=@item.KursId" class='btn btn-xs btn-danger tooltips' title='Sil'>Sil</a></td>
+                                </tr>
+                            }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

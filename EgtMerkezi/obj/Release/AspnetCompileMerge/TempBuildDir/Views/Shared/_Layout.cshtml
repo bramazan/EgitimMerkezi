@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html class="no-js" lang="tr">
+<head>
+    <title>Eğitim Merkezi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eğitim Merkezi">
+    <meta name="author" content="Eğitim Merkezi">
+    <meta charset="UTF-8">
+
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800' rel='stylesheet' type='text/css'>
+
+    @*<style type="text/css">
+            .gsc-search-button, .gsc-clear-button {
+                visibility: hidden;
+                width:0px;
+            }
+
+            .gsc-control-cse {
+                background-color: transparent !important;
+                border: none !important;
+                padding: 0px !important;
+            }
+        </style>*@
+
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="responsive-navigation visible-sm visible-xs">
+        <a href="#" class="menu-toggle-btn">
+            <i class="fa fa-bars"></i>
+        </a>
+        <div class="responsive_menu">
+            <ul class="main_menu">
+                <li>@Html.ActionLink(EgtMerkezi.Resources.lang.AnaSayfa, "Index", "Home")</li>
+                <li>@Html.ActionLink(EgtMerkezi.Resources.lang.Hakkimizda, "About", "Home")</li>
+                <li>
+                    <a>@EgtMerkezi.Resources.lang.Kurslar</a>
+                    <ul>
+                        <li><a href="/Home/Courses?CategoryID=1">Kişisel Gelişim Kursları</a></li>
+                        <li><a href="/Home/Courses?CategoryID=2">Sertifika Kursları</a></li>
+                        <li><a href="/Home/Courses?CategoryID=3">Sınavlara Hazırlık Kursları</a></li>
+                    </ul>
+                </li>
+                <li>@Html.ActionLink(EgtMerkezi.Resources.lang.Iletisim, "Contact", "Home")</li>
+                @if (HttpContext.Current.Session["eposta"] != null)
+                {
+                    if (EgtMerkezi.Controllers.HomeController.RoleGetir(HttpContext.Current.Session["eposta"].ToString()) == "Admin")
+                    {
+                        <li>@Html.ActionLink("Admin", "Slider", "Admin", null, new { target = "_blank" })</li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a>@EgtMerkezi.Resources.lang.SizeOzel</a>
+                            <ul>
+                                <li>@Html.ActionLink(EgtMerkezi.Resources.lang.SınavNotlari, "ExamNotes", "Home")</li>
+                                <li>@Html.ActionLink(EgtMerkezi.Resources.lang.Dokumanlar, "Documents", "Home")</li>
+                            </ul>
+                        </li>
+                    }
+                }
+            </ul>
+            <ul class="social_icons">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-rss"></i></a></li>
+            </ul>
+        </div>
+    </div>
+    <header class="site-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 header-left">
+                    <p><i class="fa fa-phone"></i> +90 (264) 295 54 54</p>
+                    <p><i class="fa fa-envelope"></i> <a href="mailto:sabis@sakarya.edu.tr ">sabis@sakarya.edu.tr </a></p>
+                </div>
+                <div class="col-md-4">
+                    <div class="logo">
+                        <a href="Index" title="Eğitim Merkezi" rel="home">
+                            <h3 style="color:#c6badd;">SABİS</h3>
+                            <h3 style="color:#c6badd; margin-top:0px;">@EgtMerkezi.Resources.lang.EgitimMerkezi</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 header-right">
+                    <ul class="small-links">
+                        @Html.Partial("_LoginPartial")
+                    </ul>
+                    <div class="search-form">
+                        @using (Html.BeginForm("GoogleSearch", "Home", FormMethod.Get))
+                        {
+                            <input type="text" name="search" placeholder="@EgtMerkezi.Resources.lang.Arama" title="@EgtMerkezi.Resources.lang.Arama" class="field_search">
+                        }
+                        @*Burası sakarya.edu tr deki nin aynısı*@
+                        @*<div class="col-md-9 pull-right" style="margin-right:-15px;">
+                                <script>
+                                    (function () {
+                                        var cx = '003622343470021693435:nrghgmdtbgq';
+                                        var gcse = document.createElement('script');
+                                        gcse.type = 'text/javascript';
+                                        gcse.async = true;
+                                        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                                            '//www.google.com/cse/cse.js?cx=' + cx;
+                                        var s = document.getElementsByTagName('script')[0];
+                                        s.parentNode.insertBefore(gcse, s);
+                                    })();
+                                </script>
+                                <gcse:search></gcse:search>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-bar-main" role="navigation">
+            <div class="container">
+                <nav class="main-navigation clearfix visible-md visible-lg" role="navigation">
+                    <ul class="main-menu sf-menu">
+                        <li>@Html.ActionLink(EgtMerkezi.Resources.lang.AnaSayfa, "Index", "Home")</li>
+                        <li>@Html.ActionLink(EgtMerkezi.Resources.lang.Hakkimizda, "About", "Home")</li>
+                        <li>
+                            <a>@EgtMerkezi.Resources.lang.Kurslar</a>
+                            <ul>
+                                <li><a href="/Home/Courses?CategoryID=1">Kişisel Gelişim Kursları</a></li>
+                                <li><a href="/Home/Courses?CategoryID=2">Sertifika Kursları</a></li>
+                                <li><a href="/Home/Courses?CategoryID=3">Sınavlara Hazırlık Kursları</a></li>
+                            </ul>
+                        </li>
+                        <li>@Html.ActionLink(EgtMerkezi.Resources.lang.Iletisim, "Contact", "Home")</li>
+                        @if (HttpContext.Current.Session["eposta"] != null)
+                        {
+                            if (EgtMerkezi.Controllers.HomeController.RoleGetir(HttpContext.Current.Session["eposta"].ToString()) == "Admin")
+                            {
+                                <li>@Html.ActionLink("Admin", "Slider", "Admin", null, new { target = "_blank" })</li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a>@EgtMerkezi.Resources.lang.SizeOzel</a>
+                                    <ul>
+                                        <li>@Html.ActionLink(EgtMerkezi.Resources.lang.SınavNotlari, "ExamNotes", "Home")</li>
+                                        <li>@Html.ActionLink(EgtMerkezi.Resources.lang.Dokumanlar, "Documents", "Home")</li>
+                                    </ul>
+                                </li>
+                            }
+                        }
+                    </ul>
+                    <ul class="social-icons pull-right">
+                        <li><a href="#" data-toggle="tooltip" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" data-toggle="tooltip" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#" data-toggle="tooltip" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+    </header>
+    <div class="container">
+        @RenderBody()
+    </div>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="bottom-footer">
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class="small-text">&copy; @DateTime.Now.Year. <a href="http://www.sakarya.edu.tr">@EgtMerkezi.Resources.lang.Sau</a></p>
+                    </div>
+                    <div class="col-md-4">
+                        <ul class="footer-nav">
+                            <li>@Html.ActionLink(EgtMerkezi.Resources.lang.AnaSayfa, "Index", "Home")</li>
+                            <li>@Html.ActionLink(EgtMerkezi.Resources.lang.Hakkimizda, "About", "Home")</li>
+                            <li>@Html.ActionLink(EgtMerkezi.Resources.lang.Iletisim, "Contact", "Home")</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="social-icons pull-right" style="padding:0;">
+                            <li><a href="#" data-toggle="tooltip" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

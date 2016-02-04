@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Slider";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@model List<EgtMerkezi.Models.Slider>
+
+<div class="panel panel-gray">
+    <div class="panel-heading">
+        <div class="col-md-12">
+            <h4>SLİDER</h4>
+            <a href="javascript:;" data-toggle="tooltip modal" data-width="4" data-source="/Admin/SlideEkle" data-title="Yeni Slide" data-function="CloseModal" class="btn btn-success btn-sm tooltips pull-right" style="margin-top:6px;" title="Yeni Slide"><i class="fa fa-plus">&nbsp;&nbsp; Yeni Slide</i></a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">Fotoğraf</th>
+                            <th class="col-md-7">Başlık</th>
+                            <th class="col-md-2">Başlangıç Tarihi</th>
+                            <th class="col-md-2">Bitiş Tarihi</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                @if (item.SliderFoto == null)
+                                {
+                                <td><img style='width:100%; height:auto; border:solid 1px #cccccc;' src="~/assets/img/resimyok.png" alt="" /></td>
+                                }
+                                else
+                                {
+                                <td>
+                                    <img style='width:100%; height:auto; border:solid 1px #cccccc;' src="data:image/png;base64,@System.Convert.ToBase64String(item.SliderFoto)" />
+                                </td>
+                                    }
+                                <td>@item.SliderText</td>
+                                <td>@String.Format("{0:d}", @item.BaslangicTarih)</td>
+                                <td>@String.Format("{0:d}", @item.BitisTarih)</td>
+                                <td><a href='javascript:;' data-toggle='tooltip modal' data-source="/Admin/SlideDuzenle?SlideID=@item.ID" data-title='Slide Düzenle' data-function='CloseModal' data-width='4' class='btn btn-xs btn-info tooltips' title='Düzenle'>Düzenle</a></td>
+                                <td><a href="/Admin/SlideSil?SlideID=@item.ID" class='btn btn-xs btn-danger tooltips' title='Sil'>Sil</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Bilgi Formu";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@model List<EgtMerkezi.Models.Bilgilendirme>
+
+<div class="panel panel-gray">
+    <div class="panel-heading">
+        <div class="col-md-12">
+            <h4>BİLGİ FORMU</h4>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="col-md-2">Ad Soyad</th>
+                            <th class="col-md-1">Telefon</th>
+                            <th class="col-md-1">E-posta</th>
+                            <th class="col-md-2">Kurslar</th>
+                            <th class="col-md-1">Tarih</th>
+                            <th class="col-md-4">Cevap</th>
+                            <th class="col-md-1">Cevap Tarihi</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.AdSoyad</td>
+                                <td>@item.Telefon</td>
+                                <td>@item.Eposta</td>
+                                <td>@item.Kurslar</td>
+                                <td>@String.Format("{0:d}", @item.IstekTarihi)</td>
+                                <td>@item.Cevap</td>
+                                <td>@String.Format("{0:d}", @item.CevapTarihi)</td>
+                                <td><a href='javascript:;' data-toggle='tooltip modal' data-source="/Admin/BilgiFormuDuzenle?BilgiID=@item.ID" data-title='Bilgi Formu Düzenle' data-function='CloseModal' data-width='4' class='btn btn-xs btn-info tooltips' title='Düzenle'>Düzenle</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

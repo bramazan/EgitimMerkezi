@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sakarya Üniversitesi">
+    <meta name="author" content="Sakarya Üniversitesi">
+
+    @Styles.Render("~/assets/css/styles.css")
+    @Styles.Render("~/Template/css/master_styles.css")
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    
+    <!--[if lt IE 9]>
+        @Styles.Render("~/assets/css/ie8.css")
+    <![endif]-->
+    @Scripts.Render("~/assets/js/jquery-1.10.2.min.js")
+    @Scripts.Render("~/bundles/jquery")
+
+
+</head>
+
+<body>
+    <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
+        <a id="leftmenu-trigger" class="tooltips" data-toggle="tooltip" data-placement="right" title="" data-original-title="Menü Aç/Kapat"></a>
+
+        <div class="navbar-header pull-left">
+            <a class="navbar-brand" href="http://sabis.sakarya.edu.tr">Sabis</a>
+        </div>
+        <div class="pull-left logo-yani-yazisi">
+            Eğitim Merkezi
+        </div>
+    </header>
+
+    <div id="page-container">
+        <nav id="page-leftbar" role="navigation">
+            <ul class="acc-menu" id="sidebar">
+                <li><a href="/Admin/Slider"><i class="fa fa-camera"></i><span>Slider Yönetimi</span></a></li>
+                <li><a href="/Admin/BilgiFormu"><i class="fa fa-group"></i><span>Bilgi Formu</span></a></li>
+                <li><a href="/Admin/Duyurular"><i class="fa fa-bullhorn"></i><span>Duyuru Yönetimi</span></a></li>
+                <li><a href="/Admin/OgrenciGorusleri"><i class="fa fa-comments-o"></i><span>Öğrenci Görüşleri</span></a></li>
+                <li><a href="/Admin/OgretimElemani"><i class="fa fa-user"></i><span>Öğretim Elemanı</span></a></li>
+                <li><a href="/Admin/Kurslar"><i class="fa fa-bell"></i><span>Kurslar</span></a></li>
+                <li><a href="/Admin/KursKayitlari"><i class="fa fa-check"></i><span>Kurs Kayıtları</span></a></li>
+                <li><a href="/Admin/Ogrenciler"><i class="fa fa-male"></i><span>Öğrenciler</span></a></li>                                                      
+            </ul>
+        </nav>      
+        <div id="page-content">
+            <div id='wrap'>
+                <div class="container">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        <!--Model Box Başla-->
+        <div id="GlobalModalBox" class="modal fade">
+            <div class="modal-dialog" style="width: auto !important">
+                <div class="modal-content col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+                    <div class="modal-header">
+                        <button type="button" class="close GlobalModalBoxClose" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="GlobalModalBoxTitle">Başlık</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="GlobalModalBoxBody">One fine body…</p>
+                    </div>
+                    <div class="modal-footer" id="GlobalModalBoxFooterYesNo">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="GlobalModalBoxYes">Evet</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" id="GlobalModalBoxNo">Hayır</button>
+                    </div>
+                    @*<div class="modal-footer" id="GlobalModalBoxFooterClose">
+                            <button type="button" class="btn btn-default GlobalModalBoxClose" data-dismiss="modal">Kapat</button>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+
+        <footer role="contentinfo">
+            <div class="clearfix">
+                <ul class="list-unstyled list-inline">
+                    <li>Eğitim Merkezi &copy; @DateTime.Now.Year</li>
+                    <button class="pull-right btn btn-inverse-alt btn-xs hidden-print" id="back-to-top"><i class="fa fa-arrow-up"></i></button>
+                </ul>
+            </div>
+        </footer>
+
+    </div>
+    -->
+    @Scripts.Render("~/assets/js/plugin-before")
+    @*@Scripts.Render("~/assets/plugins/js")*@
+    @Scripts.Render("~/assets/js/plugin-after")
+    @Scripts.Render("~/Template/js/master_core.js")
+    @Scripts.Render("~/Template/js/showLoading.js")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("a.navbar-brand").css("background", 'url("/assets/img/logo.png")  no-repeat center center');
+            $("a.navbar-brand").css("background-size", 'auto 20px');
+        });
+    </script>
+
+</body>
+</html>

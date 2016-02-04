@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Dökümanlar";
+}
+
+<div class="container">
+    <div class="page-title clearfix">
+        <div class="row">
+            <div class="col-md-12">
+                <h6><a href="Index">@EgtMerkezi.Resources.lang.AnaSayfa</a></h6>
+                <h6><span class="page-active">@EgtMerkezi.Resources.lang.Dokumanlar</span></h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="widget-main">
+                <div class="widget-inner shortcode-typo">
+                    <h4>@EgtMerkezi.Resources.lang.Dokumanlar</h4>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Merhabalar, <strong>@EgtMerkezi.Controllers.HomeController.OgrenciBilgiGetir(HttpContext.Current.Session["eposta"].ToString())</strong> ; Burada size ait dökümanlar açıklanacaktır.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,170 @@
+﻿@{
+    Layout = null;
+}
+
+<link href="~/assets/plugins/form-datepicker/css/datepicker.css" rel="stylesheet" />
+<script src="~/assets/plugins/form-datepicker/js/bootstrap-datepicker.js"></script>
+
+@model EgtMerkezi.Models.Kurs
+
+<div class="row">
+    <div class="col-sm-12">
+        @using (Html.BeginForm("KursEkle", "Admin", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="col-sm-2 control-label">Fotoğraf</label>
+                            <div class="col-sm-10">
+                                <input type="file" name="file" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="col-sm-2 control-label">Kurs Tipi</label>
+                            <div class="col-sm-10">
+                                @Html.DropDownListFor(m => m.KursTipId, ViewBag.KursTipi as SelectList, "Seçiniz", new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="col-sm-2 control-label">Kurs Adı</label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(m => m.KursAd, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="col-sm-2 control-label">Açıklama</label>
+                            <div class="col-sm-10">
+                                @Html.TextAreaFor(m => m.Aciklama, new { @class = "form-control", rows = 10 })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="col-sm-2 control-label">Öğretim Elemanı</label>
+                            <div class="col-sm-10">
+                                <input id="adSoyadArama" name="OgretimElemanId" style="width:100%;" />
+                                @*@Html.DropDownListFor(m => m.OgretimElemanId, ViewBag.OgretimElemani as SelectList, "Seçiniz", new { @class = "form-control" })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <label class="col-sm-4 control-label">Başlangıç</label>
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(m => m.BaslangicTarihi, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="col-sm-4 control-label">Bitiş</label>
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(m => m.BitisTarihi, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <label class="col-sm-4 control-label">Ücret</label>
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(m => m.Ucret, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="col-sm-4 control-label">Toplam Saat</label>
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(m => m.ToplamSaat, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="col-sm-2 control-label">Süre</label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(m => m.Sure, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <div class="btn-toolbar pull-right">
+                            <input type="submit" value="Kaydet" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#BitisTarihi").datepicker({ dateFormat: 'DD.MM.YYYY' });
+        $("#BitisTarihi").datepicker('setDate', new Date());
+        $("#BaslangicTarihi").datepicker({ dateFormat: 'DD.MM.YYYY' });
+        $("#BaslangicTarihi").datepicker('setDate', new Date());
+
+
+        function AdSoyadResult(personel) {
+            var result = '<div>';
+            result += '<div class="search_result"><div class="pull-left" style="margin-right:10px;"></div><div class="clear"><span class="search_result_ad">' + personel.text + '</span></div></div>'
+            result += '</div>';
+            return result;
+        }
+
+        $("#adSoyadArama").select2({
+            placeholder: "Ad Soyad ile arama yapabilirsiniz",
+            minimumInputLength: 3,
+            multiple: false,
+            closeOnSelect: true,
+            formatResult: AdSoyadResult,
+            allowClear: true,
+            ajax: {
+                url: '@Url.Action("OgretimElemaniArama", "Admin", new { area = "" })',
+                dataType: 'json',
+                quietMillis: 500,
+                data: function (term) {
+                    if (hasWhiteSpace(term)) {
+                        var tmp = term.split(" ");
+                        return {
+                            ad: tmp[0],
+                            soyad: tmp[1]
+                        };
+                    } else {
+                        return {
+                            ad: term,
+                            soyad: ""
+                        };
+                    }
+                },
+                results: function (data) {
+                    var tmp = new Array();
+                    $.each(data, function (i, item) {
+                        tmp.push({ id: item.ID, text: item.AdSoyad });
+                    });
+                    return { results: tmp };
+                }
+            }
+        });
+
+
+        function hasWhiteSpace(s) {
+            return s.indexOf(' ') >= 0;
+        }
+
+
+    });
+</script>
+

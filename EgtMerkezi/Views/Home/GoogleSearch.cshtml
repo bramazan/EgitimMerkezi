@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+}
+
+<div class="container">
+    <div class="page-title clearfix">
+        <div class="row">
+            <div class="col-md-12">
+                <h6><a href="Index">@EgtMerkezi.Resources.lang.AnaSayfa</a></h6>
+                <h6><span class="page-active">Arama Sonuçları</span></h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="widget-main">
+                <div class="widget-inner shortcode-typo">
+                    <h4>Arama Sonuçları</h4>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="search-result"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load('search', '1');
+        function OnLoad() {
+            var s = window.location.search;
+            if (s.indexOf('search=') >= 0) {
+                s = s.substring(s.indexOf('search=') + 7);
+                if (s.indexOf('&') >= 0) {
+                    s = s.substring(0, s.indexOf('&'));
+                }
+                s = decodeURIComponent(s.replace('+', ' '));
+            }
+            else {
+                s = "";
+            }
+            var customSearchControl = new google.search.CustomSearchControl('003622343470021693435:nrghgmdtbgq');
+            customSearchControl.draw('search-result');
+            customSearchControl.execute(s);
+
+        }
+        google.setOnLoadCallback(OnLoad);
+    </script>
+}

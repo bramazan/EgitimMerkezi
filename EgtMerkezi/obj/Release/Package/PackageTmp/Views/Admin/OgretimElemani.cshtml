@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Öğretim Elemani";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@model List<EgtMerkezi.Models.OgretimElemani>
+
+<div class="panel panel-gray">
+    <div class="panel-heading">
+        <div class="col-md-12">
+            <h4>ÖĞRETİM ELEMANI</h4>
+            <a href="javascript:;" data-toggle="tooltip modal" data-width="4" data-source="/Admin/OgretimElemaniEkle" data-title="Yeni Öğretim Elemanı" data-function="CloseModal" class="btn btn-success btn-sm tooltips pull-right" style="margin-top:6px;" title="Yeni Öğretim Elemanı"><i class="fa fa-plus">&nbsp;&nbsp; Yeni Öğretim Elemanı</i></a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">Fotograf</th>
+                            <th class="col-md-2">Ad Soyad</th>
+                            <th class="col-md-1">Telefon</th>
+                            <th class="col-md-2">E-posta</th>
+                            <th class="col-md-6">Özgeçmiş</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                @if (item.Foto == null)
+                                {
+                                    <td><img style='width:100%; height:auto; border:solid 1px #cccccc;' src="~/assets/img/resimyok.png" alt="" /></td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <img style='width:100%; height:auto; border:solid 1px #cccccc;' src="data:image/png;base64,@System.Convert.ToBase64String(item.Foto)" />
+                                    </td>
+                                }
+                                <td>@item.Ad @item.Soyad</td>
+                                <td>@item.Telefon</td>
+                                <td>@item.Eposta</td>
+                                <td>@item.Ozgecmis</td>
+                                <td><a href='javascript:;' data-toggle='tooltip modal' data-source="/Admin/OgretimElemaniDuzenle?OgretimElemaniID=@item.OgretimElemanId" data-title='Öğretim Elemanı Düzenle' data-function='CloseModal' data-width='4' class='btn btn-xs btn-info tooltips' title='Düzenle'>Düzenle</a></td>
+                                <td><a href="/Admin/OgretimElemaniSil?OgretimElemaniID=@item.OgretimElemanId" class='btn btn-xs btn-danger tooltips' title='Sil'>Sil</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

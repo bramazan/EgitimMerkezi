@@ -1,0 +1,53 @@
+﻿@model EgtMerkezi.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "Üye Ol";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="widget-item">
+                    <div class="request-information">
+                        <h4 class="widget-title">@EgtMerkezi.Resources.lang.UyeOl</h4>
+                        <div class="request-info clearfix">
+                            @using (Html.BeginForm("UyeEkle", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                <div class="full-row">
+                                    <label for="cat2">@EgtMerkezi.Resources.lang.Ad:</label>
+                                    <div class="input-select">
+                                        @Html.TextBoxFor(m => m.Ad)
+                                    </div>
+                                </div>
+                                <div class="full-row">
+                                    <label for="yourname">@EgtMerkezi.Resources.lang.Soyad:</label>
+                                    @Html.TextBoxFor(m => m.Soyad)
+                                </div>
+                                <div class="full-row">
+                                    <label for="yourname">@EgtMerkezi.Resources.lang.Telefon:</label>
+                                    @Html.TextBoxFor(m => m.Telefon)
+                                </div>
+                                <div class="full-row">
+                                    <label for="email-id">@EgtMerkezi.Resources.lang.Eposta:</label>
+                                    @Html.TextBoxFor(m => m.Email)
+                                </div>
+                                <div class="full-row">
+                                    <label for="email-id">@EgtMerkezi.Resources.lang.Sifre:</label>
+                                    @Html.PasswordFor(m => m.Password)
+                                </div>
+                                <div class="full-row">
+                                    <div class="submit_field">
+                                        <input class="mainBtn pull-right" type="submit" value="Üye Ol">
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>       
+    </div>
+</div>
+
+

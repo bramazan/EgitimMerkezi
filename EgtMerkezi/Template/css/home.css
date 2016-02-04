@@ -1,0 +1,139 @@
+﻿body{
+	padding-top: 0px;
+    background-color: #F7F8FA;
+}
+
+#page-content{
+	margin-left: 0px;
+	min-height: 0px;
+    background-color: #F7F8FA;
+}
+
+.centerDiv{
+	width:853px;
+	border-radius: 5px;
+	padding:10px;
+	height:auto;
+	position:absolute;
+ 	margin-left:-427px;
+	margin-top: -308px;
+	top:50%;
+	left:50%;
+	max-width: 853px;
+}
+
+.logo_kutu_parent_col{
+	height:96%;
+}
+
+
+
+.tiles-footer:after{
+	display: none;
+}
+
+.tiles-heading{
+	font-size: 18px;
+}
+
+.info-tiles, .shortcut-tiles{
+	margin: 0px 0px 10px;
+}
+
+.logo_kutu{
+	background-color: #264796;
+	padding-top: 15px;
+	padding-bottom: 10px;
+	border-bottom: 10px solid #253868;
+	/*border-top: 86px solid #2C5ACA;*/
+	height: 100%;
+}	
+
+.logo{
+	width: 180px;
+	margin-top: -91px;
+}
+
+.baslik{
+	color: #f9f9f9;
+	font-size: 22px;
+	padding-top: 3px;
+	font-family: "Times New Roman Bold", Times, serif;
+	margin-top: -49px;
+}
+
+.yazi_baslik{
+	color: #f9f9f9;
+	text-align: left;
+	padding-left: 10px;
+	padding-top: 10px;
+	font-size: 20px;
+}
+
+.yazi{
+	color: #f9f9f9;
+	text-align: justify;
+	padding: 0 10px 10px 10px;
+
+}
+
+
+.universite_kutu{
+	height: 320px;
+}
+
+html{
+	background-color: #F7F8FA;
+}
+
+@media only screen and (max-width:853px){
+        .centerDiv{
+        	width: 100%;
+        	left: 0px;
+        	margin-left:0px;
+        }
+    }
+
+@media only screen and (max-width:767px){
+    .centerDiv{
+    	margin-top: 0px;
+    	top:40px;
+    }
+
+    .info-tiles .tiles-body-alt{
+    	font-size: 36px;
+    }
+
+    .info-tiles .tiles-body-alt .text-center{
+    		text-align: right;
+    		padding-right: 20px;
+    }
+
+    .info-tiles .tiles-body-alt, .info-tiles .tiles-body{
+    	padding: 0px;
+    }
+    .info-tiles .tiles-footer{
+    	display: none;
+    }
+    .logo_kutu{
+    	border-bottom: 0px;
+    }
+    .info-tiles .tiles-heading{
+    	position: absolute;
+    }
+
+    .universite_kutu{
+    	height: auto;
+    	margin-bottom: 15px;
+    }
+}
+
+@media only screen and (max-height: 690px){
+        .centerDiv{
+        	top:0px;
+        	margin-top:40px;
+        }
+        #page-content{
+        	padding: 0px;
+        }
+    }

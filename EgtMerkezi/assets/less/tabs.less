@@ -1,0 +1,107 @@
+//
+// Tabs
+// --------------------------------------------------
+
+.tab-container {
+	.nav-tabs > li > a {border-radius: 0}
+	margin-bottom: 20px;
+
+	.tab-content {
+		border: 1px solid @border-darker;
+		border-top: 0;
+		padding: 10px 15px;
+	}
+	> .nav-tabs > li.active > a {border-top: 2px solid @brand-primary; background-color: @panel-bg;}
+
+	&.tab-left, &.tab-right {
+		> .nav-tabs > li {float: none; min-width: 75px;}
+		> .nav-tabs > li > a {border: 1px solid @border-darker;}
+		> .nav-tabs > li.active > a {border-top-color: @border-darker !important}
+		.tab-content {overflow: auto; border-top: 1px solid @border-darker;}
+	}
+
+	&.tab-left > .nav-tabs {
+		float: left;margin-right: -1px;
+		> li > a {border-right: 0}
+		> li.active > a {border-left: 2px solid @brand-primary;}
+	}
+
+	&.tab-right > .nav-tabs {
+		float: right;margin-left: -1px;
+		> li > a {border-left: 0}
+		> li.active > a {border-right: 2px solid @brand-primary;}
+	}
+
+	&.tab-bottom {
+		> .tab-content {border-top: 1px solid @border-darker;}
+		> .nav-tabs {
+			border-bottom: none;
+			margin-top: 0px;
+			> li.active > a {
+				margin-top: -2px;
+				border-top-color: transparent !important;
+				border-bottom: 2px solid @brand-primary;
+			}
+		}
+	}
+}
+
+.tab-primary      {.tab-states(@brand-primary);}
+.tab-warning      {.tab-states(@brand-warning);}
+.tab-danger       {.tab-states(@brand-danger);}
+.tab-success      {.tab-states(@brand-success);}
+.tab-info         {.tab-states(@brand-info);}
+.tab-inverse      {.tab-states(@brand-inverse);}
+
+// custom colors
+.tab-brown        {.tab-states(@brand-brown);}  
+.tab-indigo       {.tab-states(@brand-indigo);}
+.tab-orange       {.tab-states(@brand-orange);}
+.tab-sky          {.tab-states(@brand-sky);}
+.tab-midnightblue {.tab-states(@brand-midnightblue);}
+.tab-magenta      {.tab-states(@brand-magenta);}  
+.tab-green        {.tab-states(@brand-green);} 
+.tab-purple       {.tab-states(@brand-purple);} 
+
+
+.tab-states(@color) {
+  &.tab-container {
+  	>.nav-tabs > li.active > a {border-top-color: @color;}
+  	&.tab-left > .nav-tabs > li.active {border-left-color: @color;}
+  	&.tab-right > .nav-tabs > li.active {border-right-color: @color;}
+  	&.tab-bottom > .nav-tabs > li.active > a {border-bottom-color: @color;}
+  }
+}
+
+
+//
+// Accordions
+// --------------------------------------------------
+.accordion-group {
+	.accordion-item {
+		.accordion-title {
+			text-decoration: none;
+			h4 {
+				color: @gray-darker;
+				background-color: @border-lighter;
+				border: 1px solid @border-lighter;
+				padding: 5px 10px;
+				border-radius: @border-radius-base;
+				margin: 5px 0;
+				&:after {
+					.opacity(0.5);
+					content:"\f107";
+					font-family: FontAwesome;
+					font-style: normal;
+					font-weight: normal;
+					float: right;
+					text-decoration: none;
+				}
+			}
+			&.collapsed h4:after {content:"\f104";.opacity(0.5)}
+		}
+		.accordion-body {
+			padding: 20px;
+		}
+	}
+}

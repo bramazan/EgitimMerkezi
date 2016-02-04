@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewBag.Title = "Kurslar";
+}
+
+@model EgtMerkezi.Controllers.AnaSayfaDTO
+
+
+<div class="container">
+    <div class="page-title clearfix">
+        <div class="row">
+            <div class="col-md-12">
+                <h6><a href="Index">@EgtMerkezi.Resources.lang.AnaSayfa</a></h6>
+                <h6><a>@EgtMerkezi.Resources.lang.Kurslar</a></h6>
+                <h6><span class="page-active">@Model.kursdetay.KursKategoriAd</span></h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    @foreach (var item in Model.kurs)
+                    {
+                        <div class="list-event-item">
+                            <div class="box-content-inner clearfix">
+                                <div class="list-event-thumb">
+                                    <a>
+                                        @if (item.Foto == null)
+                                        {
+                                            <img style='width:100%; border:solid 1px #cccccc;' src="~/assets/img/resimyok.png" alt="" />
+                                        }
+                                        else
+                                        {
+                                            <img style='width:100%; border:solid 1px #cccccc;' src="data:image/png;base64,@System.Convert.ToBase64String(item.Foto)" />
+                                        }
+                                    </a>
+                                </div>
+                                <div class="list-event-header">
+                                    <span class="event-place small-text"><i class="fa fa-user"></i>@item.OgretimElemani.Ad @item.OgretimElemani.Soyad</span>
+                                    <span class="event-place small-text"><i class="fa fa-calendar-o"></i>@String.Format("{0:d}", @item.BaslangicTarihi)  - @String.Format("{0:d}", @item.BitisTarihi)</span>
+                                    <span class="event-place small-text"><i class="fa fa-clock-o"></i>@item.ToplamSaat saat</span>
+                                    <span class="event-place small-text"><i class="fa fa-money"></i>@String.Format("{0:c0}", @item.Ucret)</span>
+                                </div>
+                                <h5 class="event-title"><a>@item.KursAd</a></h5>
+                                <p>@item.Aciklama</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        @*<div class="col-md-4">
+            <div class="widget-main">
+                <div class="widget-main-title">
+                    <h4 class="widget-title">Duyurular</h4>
+                </div>
+                <div class="widget-inner">
+                    <div class="event-small-list clearfix">
+                        <div class="calendar-small">
+                            <span class="s-month">Jan</span>
+                            <span class="s-date">24</span>
+                        </div>
+                        <div class="event-small-details">
+                            <h5 class="event-small-title"><a href="event-single.html">Nelson Mandela Memorial Tribute</a></h5>
+                            <p class="event-small-meta small-text">Cramton Auditorium 9:00 AM to 1:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="event-small-list clearfix">
+                        <div class="calendar-small">
+                            <span class="s-month">Jan</span>
+                            <span class="s-date">24</span>
+                        </div>
+                        <div class="event-small-details">
+                            <h5 class="event-small-title"><a href="event-single.html">OVADA Oxford Open</a></h5>
+                            <p class="event-small-meta small-text">Posner Center 4:30 PM to 6:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="event-small-list clearfix">
+                        <div class="calendar-small">
+                            <span class="s-month">Jan</span>
+                            <span class="s-date">24</span>
+                        </div>
+                        <div class="event-small-details">
+                            <h5 class="event-small-title"><a href="event-single.html">Filming Objects And Sculpture</a></h5>
+                            <p class="event-small-meta small-text">A70 Cyert Hall 12:00 PM to 1:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="widget-main">
+                <div class="widget-main-title">
+                    <h4 class="widget-title">ÖĞRENCİ GÖRÜŞLERİ</h4>
+                </div>
+                <div class="widget-inner">
+                    <div class="prof-list-item clearfix">
+                        <div class="prof-thumb">
+                            <img src="http://placehold.it/75x75" alt="Profesor Name">
+                        </div>
+                        <div class="prof-details">
+                            <h5 class="prof-name-list">Prof. Dr. Ümit Kocabıçak</h5>
+                            <p class="small-text">Sed ut lectus ac lacus molestie posuere non tincidunt arcu.</p>
+                        </div>
+                    </div>
+                    <div class="prof-list-item clearfix">
+                        <div class="prof-thumb">
+                            <img src="http://placehold.it/75x75" alt="Profesor Name">
+                        </div>
+                        <div class="prof-details">
+                            <h5 class="prof-name-list">Prof. Dr. Ümit Kocabıçak</h5>
+                            <p class="small-text">Nullam sollicitudin libero ut ullamcorper pretium.</p>
+                        </div>
+                    </div>
+                    <div class="prof-list-item clearfix">
+                        <div class="prof-thumb">
+                            <img src="http://placehold.it/75x75" alt="Profesor Name">
+                        </div>
+                        <div class="prof-details">
+                            <h5 class="prof-name-list">Prof. Dr. Ümit Kocabıçak</h5>
+                            <p class="small-text">Integer et nisl tincidunt, euismod orci eget, posuere nunc.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+    </div>
+</div>
+
+

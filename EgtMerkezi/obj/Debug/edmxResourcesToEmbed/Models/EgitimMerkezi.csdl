@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EgitimMerkeziModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="EgitimMerkeziEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bilgilendirme" EntityType="EgitimMerkeziModel.Bilgilendirme" />
+    <EntitySet Name="Duyurular" EntityType="EgitimMerkeziModel.Duyurular" />
+    <EntitySet Name="Kurs" EntityType="EgitimMerkeziModel.Kurs" />
+    <EntitySet Name="KursOgrenci" EntityType="EgitimMerkeziModel.KursOgrenci" />
+    <EntitySet Name="KursTip" EntityType="EgitimMerkeziModel.KursTip" />
+    <EntitySet Name="OgrenciGorus" EntityType="EgitimMerkeziModel.OgrenciGorus" />
+    <EntitySet Name="OgretimElemani" EntityType="EgitimMerkeziModel.OgretimElemani" />
+    <EntitySet Name="Oneri" EntityType="EgitimMerkeziModel.Oneri" />
+    <EntitySet Name="Slider" EntityType="EgitimMerkeziModel.Slider" />
+    <EntitySet Name="sysdiagrams" EntityType="EgitimMerkeziModel.sysdiagrams" />
+    <AssociationSet Name="FK_Kurs_KursTip" Association="EgitimMerkeziModel.FK_Kurs_KursTip">
+      <End Role="KursTip" EntitySet="KursTip" />
+      <End Role="Kurs" EntitySet="Kurs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kurs_OgretimElemani" Association="EgitimMerkeziModel.FK_Kurs_OgretimElemani">
+      <End Role="OgretimElemani" EntitySet="OgretimElemani" />
+      <End Role="Kurs" EntitySet="Kurs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KursOgrenci_Kurs" Association="EgitimMerkeziModel.FK_KursOgrenci_Kurs">
+      <End Role="Kurs" EntitySet="Kurs" />
+      <End Role="KursOgrenci" EntitySet="KursOgrenci" />
+    </AssociationSet>
+    <EntitySet Name="Ogrenci" EntityType="EgitimMerkeziModel.Ogrenci" />
+    <AssociationSet Name="FK_KursOgrenci_Ogrenci" Association="EgitimMerkeziModel.FK_KursOgrenci_Ogrenci">
+      <End Role="Ogrenci" EntitySet="Ogrenci" />
+      <End Role="KursOgrenci" EntitySet="KursOgrenci" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Bilgilendirme">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdSoyad" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Telefon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Eposta" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Kurslar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IstekTarihi" Type="DateTime" Precision="3" />
+    <Property Name="Cevap" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CevapTarihi" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Duyurular">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DuyuruBaslik" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Duyuru" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DuyuruTarih" Type="DateTime" Precision="3" />
+    <Property Name="Tarih" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Kurs">
+    <Key>
+      <PropertyRef Name="KursId" />
+    </Key>
+    <Property Name="KursId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KursTipId" Type="Int32" />
+    <Property Name="KursAd" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OgretimElemanId" Type="Int32" />
+    <Property Name="Sure" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Ucret" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="BaslangicTarihi" Type="DateTime" Precision="3" />
+    <Property Name="BitisTarihi" Type="DateTime" Precision="3" />
+    <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ToplamSaat" Type="Int32" />
+    <NavigationProperty Name="KursTip" Relationship="EgitimMerkeziModel.FK_Kurs_KursTip" FromRole="Kurs" ToRole="KursTip" />
+    <NavigationProperty Name="OgretimElemani" Relationship="EgitimMerkeziModel.FK_Kurs_OgretimElemani" FromRole="Kurs" ToRole="OgretimElemani" />
+    <NavigationProperty Name="KursOgrenci" Relationship="EgitimMerkeziModel.FK_KursOgrenci_Kurs" FromRole="Kurs" ToRole="KursOgrenci" />
+  </EntityType>
+  <EntityType Name="KursOgrenci">
+    <Key>
+      <PropertyRef Name="KursOgenciId" />
+    </Key>
+    <Property Name="KursOgenciId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KursId" Type="Int32" />
+    <Property Name="OgrenciId" Type="Int32" />
+    <Property Name="KayitTarihi" Type="DateTime" Precision="3" />
+    <Property Name="Ucret" Type="Double" />
+    <NavigationProperty Name="Kurs" Relationship="EgitimMerkeziModel.FK_KursOgrenci_Kurs" FromRole="KursOgrenci" ToRole="Kurs" />
+    <NavigationProperty Name="Ogrenci" Relationship="EgitimMerkeziModel.FK_KursOgrenci_Ogrenci" FromRole="KursOgrenci" ToRole="Ogrenci" />
+  </EntityType>
+  <EntityType Name="KursTip">
+    <Key>
+      <PropertyRef Name="KursTipId" />
+    </Key>
+    <Property Name="KursTipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KursKategoriAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Renk" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Kurs" Relationship="EgitimMerkeziModel.FK_Kurs_KursTip" FromRole="KursTip" ToRole="Kurs" />
+  </EntityType>
+  <EntityType Name="OgrenciGorus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdSoyad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Gorus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Tarih" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="OgretimElemani">
+    <Key>
+      <PropertyRef Name="OgretimElemanId" />
+    </Key>
+    <Property Name="OgretimElemanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telefon" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Eposta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Ozgecmis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Kurs" Relationship="EgitimMerkeziModel.FK_Kurs_OgretimElemani" FromRole="OgretimElemani" ToRole="Kurs" />
+  </EntityType>
+  <EntityType Name="Oneri">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdSoyad" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Telefon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Eposta" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Mesaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Tarih" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Slider">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SliderFoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="SliderText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BaslangicTarih" Type="DateTime" Precision="3" />
+    <Property Name="BitisTarih" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Kurs_KursTip">
+    <End Type="EgitimMerkeziModel.KursTip" Role="KursTip" Multiplicity="0..1" />
+    <End Type="EgitimMerkeziModel.Kurs" Role="Kurs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KursTip">
+        <PropertyRef Name="KursTipId" />
+      </Principal>
+      <Dependent Role="Kurs">
+        <PropertyRef Name="KursTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kurs_OgretimElemani">
+    <End Type="EgitimMerkeziModel.OgretimElemani" Role="OgretimElemani" Multiplicity="0..1" />
+    <End Type="EgitimMerkeziModel.Kurs" Role="Kurs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OgretimElemani">
+        <PropertyRef Name="OgretimElemanId" />
+      </Principal>
+      <Dependent Role="Kurs">
+        <PropertyRef Name="OgretimElemanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KursOgrenci_Kurs">
+    <End Type="EgitimMerkeziModel.Kurs" Role="Kurs" Multiplicity="0..1" />
+    <End Type="EgitimMerkeziModel.KursOgrenci" Role="KursOgrenci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kurs">
+        <PropertyRef Name="KursId" />
+      </Principal>
+      <Dependent Role="KursOgrenci">
+        <PropertyRef Name="KursId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Ogrenci">
+    <Key>
+      <PropertyRef Name="OgrenciId" />
+    </Key>
+    <Property Name="OgrenciId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telefon" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Eposta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="DogumTarihi" Type="DateTime" Precision="3" />
+    <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Role" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Aktivasyon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Onay" Type="Boolean" />
+    <Property Name="KayitTarihi" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="KursOgrenci" Relationship="EgitimMerkeziModel.FK_KursOgrenci_Ogrenci" FromRole="Ogrenci" ToRole="KursOgrenci" />
+  </EntityType>
+  <Association Name="FK_KursOgrenci_Ogrenci">
+    <End Type="EgitimMerkeziModel.Ogrenci" Role="Ogrenci" Multiplicity="0..1" />
+    <End Type="EgitimMerkeziModel.KursOgrenci" Role="KursOgrenci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogrenci">
+        <PropertyRef Name="OgrenciId" />
+      </Principal>
+      <Dependent Role="KursOgrenci">
+        <PropertyRef Name="OgrenciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

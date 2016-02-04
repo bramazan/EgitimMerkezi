@@ -1,0 +1,233 @@
+//Feeds Component
+//(c) The Red Team 2013
+
+.panel-comments, .panel-threads, .panel-users {
+	.list-unstyled;
+	margin-bottom: 20px;
+	li {
+		.clearfix();
+		display: block;
+		margin-left: -20px;
+		margin-right: -20px;
+		padding: 20px 20px;
+		border-bottom: 1px solid @border-lighter;
+		&:first-child {padding-top: 0;}
+		img {
+			float: left;
+			height: 30px;
+			width: 30px;
+			border-radius: @border-radius-small;
+		}
+		.content {
+			.time {float: right; color: @gray-light; font-size: @font-size-small;}
+			margin-left: 45px;
+		}
+	}
+}
+
+.panel-userprofile {
+	.list-unstyled;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	li {
+		.clearfix();
+		display: block;
+		padding: 10px 0;
+		border-bottom: 1px solid @border-lighter;
+		&:first-child {padding-top: 0;}
+		&:last-child {border-bottom: 0;}
+		img {
+			float: left;
+			height: 30px;
+			width: 30px;
+			border-radius: @border-radius-small;
+		}
+		.content {
+			.time {float: right; color: @gray-light; font-size: @font-size-small;}
+			margin-left: 45px;
+		}
+	}
+}
+
+.panel-comments li .content {
+	.commented {
+		display: block; 
+		margin-bottom: 10px;
+	}
+	.actions { 
+		display: block;
+		line-height: 1em;
+		float: right;
+		a {
+			color: @gray;
+			font-size: @font-size-base;
+			margin-left: 10px;
+			&:first-child {margin-left: 0;}
+			&:hover {
+				text-decoration: none;
+				color: @gray-darker;
+			}
+		}
+	}
+}
+
+.panel-threads li .content {
+	.title {display: block;}
+	.thread {
+		color: @gray-light; 
+		display: block;
+		font-size: @font-size-small; 
+		padding-top: 5px; 
+		line-height: 14px;
+		a {
+			color: @gray;
+			&:hover {
+				color: @gray-darker; 
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+
+.panel-users li .content {
+	.desc {display: block;}
+	> div {
+		font-size: @font-size-small;
+		color: @gray-light;
+	}
+}
+
+.panel-tasks {
+	.list-unstyled;
+	margin-bottom: 20px;
+	li {
+		.clearfix();
+		display: block;
+		margin-left: 0px;
+		margin-right: 0px;
+		padding: 10px 10px;
+		background-color: #f2f3f5;
+		margin-bottom: 1px;
+		border-left: 2px solid @border-lighter;
+		border-radius: @border-radius-small;
+
+		label {
+			margin-bottom: 0;
+			.task-description {
+				margin: 0 5px 0 5px;
+				&.done {
+					text-decoration: line-through;
+					font-style: italic;
+					.opacity(0.8);
+				}
+			}
+		}
+
+		&.item-primary 	{border-left: 2px solid @brand-primary;}
+		&.item-info 	{border-left: 2px solid @brand-info;}
+		&.item-danger 	{border-left: 2px solid @brand-danger;}
+		&.item-warning 	{border-left: 2px solid @brand-warning;}
+		&.item-success 	{border-left: 2px solid @brand-success;}
+		&.item-inverse 	{border-left: 2px solid @brand-inverse;}
+		&.item-placeholder {
+			background-color: @border-lighter;
+			border: 1px dashed #666;
+			height: 42px;
+		}
+
+		.options {float: right;}
+
+		.icon-dragtask {
+			color: transparent;
+			margin-right: 6px;
+			width: 6px;
+			height: 14px;
+			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAOCAMAAAA7QZ0XAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRFf39/////F3PnHQAAAAJ0Uk5T/wDltzBKAAAAGklEQVR42mJgYGBkZAABMMUIBjCKKnIAAQYAClYANToXblMAAAAASUVORK5CYII=);
+			cursor: -webkit-grab; cursor: -moz-grab;
+			&:active, &:focus {cursor: -webkit-grabbing; cursor: -moz-grabbing;}
+		}
+	}
+}
+
+.panel-chat {
+	margin-bottom: 20px;
+	height: 700px;
+	overflow-y: auto;
+
+	.chat-message {
+		margin-bottom: 10px;
+		position: relative;
+		&:last-child {margin-bottom: 0;}
+
+		&:after {
+			left: 38px;
+			top: 10px;
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+			border-right-color: #EEE;
+			border-width: 6px;
+			margin-top: -4px;
+		}
+
+		.chat-contact {
+			img {max-width: 40px; border-radius: @border-radius-large}
+			float: left;
+			margin-right: 10px;
+		}
+		.chat-text {
+			padding: 10px;
+			background-color: #eee;
+			position: relative;
+			overflow: hidden;
+			position: relative;
+		}
+		&.me {
+			.chat-contact {
+				float: right;
+				margin-left: 10px;
+				margin-right: 0px;
+			}
+			.chat-text {
+				background-color: #ddd;
+			}
+			&:after {
+				border-right-color: transparent;
+				border-left-color: #ddd;
+				right: 38px;
+				left: auto;
+			}
+		}
+	}
+}
+
+.chat-primary		{.chat-states(@brand-primary);}
+.chat-warning      {.chat-states(@brand-warning);}
+.chat-danger       {.chat-states(@brand-danger);}
+.chat-success      {.chat-states(@brand-success);}
+.chat-info         {.chat-states(@brand-info);}
+.chat-inverse      {.chat-states(@brand-inverse);}
+
+// custom colors
+.chat-brown        {.chat-states(@brand-brown);}  
+.chat-indigo       {.chat-states(@brand-indigo);}
+.chat-orange       {.chat-states(@brand-orange);}
+.chat-sky          {.chat-states(@brand-sky);}
+.chat-midnightblue {.chat-states(@brand-midnightblue);}
+.chat-magenta      {.chat-states(@brand-magenta);}  
+.chat-green        {.chat-states(@brand-green);} 
+.chat-purple       {.chat-states(@brand-purple);} 
+
+
+.chat-states(@chat-color) {
+	.chat-text {
+		color: #fff !important;
+		background-color: @chat-color !important;
+	}
+	&:after {border-right-color: @chat-color !important;}
+	&.me:after {border-left-color: @chat-color !important;}
+}

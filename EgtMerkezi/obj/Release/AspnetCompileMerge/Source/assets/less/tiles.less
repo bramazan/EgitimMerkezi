@@ -1,0 +1,203 @@
+//
+// Avant
+// (c) The Red Team
+//
+// Dashboard Tiles
+// --------------------------------------------------
+
+.tiles-heading, .tiles-body, .tiles-footer {
+	.clearfix();
+	.transition(~"0.05s ease-in");
+}
+
+.info-tiles, .shortcut-tiles {
+	margin: 0px 0px 20px;
+	display: block;
+	border-radius: @border-radius-large;
+}
+
+// Info Tiles
+
+.info-tiles {
+	.tiles-heading {
+		padding: 5px 10px;
+		.border-top-radius(@border-radius-large);
+		text-transform: uppercase;
+		text-align: center;
+		letter-spacing: 0.04em;
+		.pull-right {
+			color: #fff; .opacity(0.4); .transition(~"0.06s ease-in");	
+		}
+	}
+	.tiles-body {
+		font-size: 42px;
+		border-bottom-right-radius: @border-radius-large;
+		border-bottom-left-radius: @border-radius-large;
+	}
+	.tiles-body-alt {
+		font-size: 48px;
+		border-bottom-right-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+	.tiles-body-alt, .tiles-body {
+		padding: 10px;
+		font-weight: 300;
+
+		.sparkline {width: 100px; margin: 0 auto; padding: 0px;}
+		.text-top {vertical-align: super; font-size: 24px}
+		.text-smallcaps {font-variant: small-caps;}
+		.text-center {margin-top: -5px;}
+
+		i {color: #fff; .opacity(0.4); .transition(~"0.06s ease-in");}
+		> i {position: absolute; font-size: 42px;}
+		div + small {font-size: @font-size-base; text-align: center; display: block; font-weight: 400; .opacity(0.7); margin-top: -7px; margin-bottom: 4px;}
+	}
+	.tiles-footer {
+		color: #fff;
+		color: rgba(255,255,255,0.4);
+		padding: 5px 10px;
+		border-bottom-right-radius: @border-radius-large;
+		border-bottom-left-radius: @border-radius-large;
+		
+		i {float: right; position: relative;top: 2px; display: none;}
+
+		&:after {
+			content: "";
+			position: absolute;
+			bottom: 0%;
+			right: -1px;
+			width: 0px;
+			height: 0px;
+			margin-right: 11px;
+			margin-bottom: 20px;
+			border-top: 5px solid rgba(0, 0, 0, 0.35);
+			border-right: 5px solid @body-bg;
+			border-bottom: 5px solid @body-bg;
+			border-left: 5px solid rgba(0, 0, 0, 0.35);
+			border-top-left-radius: @border-radius-large;
+			
+		}
+		&:hover {color: #fff;}
+	}
+	&:hover {
+		i {color: #fff; .opacity(1);}
+		text-decoration: none;
+
+		.tiles-footer {
+			color: #fff;
+			i {display: inline;}
+		}
+		.tiles-heading .pull-right {color: #fff; .opacity(1);}
+	}
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.info-tiles .tiles-footer:after {right: 0; border-top: 6px solid rgba(0, 0, 0, 0.35);}
+}
+
+@media (max-width: @screen-xs-max) {
+	.col-xs-12 .info-tiles .tiles-footer:after {bottom:-20px;}
+}
+
+// Shortcut Tiles
+.shortcut-tiles {
+	.tiles-body {
+		padding: 10px 10px 0px 10px;
+		font-size: 42px;
+		line-height: 42px;
+		border-top-right-radius: @border-radius-large;
+		border-top-left-radius: @border-radius-large;
+		i {
+			color: #fff; .opacity(0.6); .transition(~"0.06s ease-in");
+		}
+		.pull-right {
+			margin-top: -3px;
+			line-height: 0;
+			.badge {
+				background: #000; //fallback
+				background-color: rgba(0,0,0,0.3);
+			}
+		}
+	}
+	.tiles-footer {
+		text-transform: none;
+		text-align: right;
+		padding: 7px 10px;
+		font-size: 12px;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		border-bottom-right-radius: @border-radius-large;
+		border-bottom-left-radius: @border-radius-large;
+	}
+	&:hover {
+		text-decoration: none;
+		i {color: #fff; .opacity(1);}
+	}
+}
+
+
+// Tiles Mixin / Generator
+.info-tiles-variant(@color, @text-color:#fff) {
+	.tiles-heading 	{background: lighten(@color,7.5%);}
+	.tiles-body 	{background: @color;}
+	.tiles-body-alt {background: @color;}
+	.tiles-footer 	{background: darken(@color,10%);}
+	color: @text-color;
+	&:hover {
+		.tiles-heading 	{background: lighten(@color,2.5%);}
+		.tiles-body 	{background: darken(@color,5%);}
+		.tiles-body-alt {background: darken(@color,5%);}
+		.tiles-footer 	{background: darken(@color,15%);}
+		color: @text-color;
+	}
+}
+
+.shortcut-tiles-variant(@color, @text-color:#fff) {
+	.tiles-heading,.tiles-body,.tiles-footer {background: @color;}
+	color: @text-color;
+	&:hover {
+		.tiles-heading,.tiles-body,.tiles-footer {background: darken(@color,5%);}
+		color: @text-color;
+	}
+}
+
+// Tiles colors
+.info-tiles {
+	&.tiles-info 			{.info-tiles-variant(@brand-info);}
+	&.tiles-success 		{.info-tiles-variant(@brand-success);}
+	&.tiles-danger 			{.info-tiles-variant(@brand-danger);}
+	&.tiles-warning 		{.info-tiles-variant(@brand-warning);}
+	&.tiles-primary 		{.info-tiles-variant(@brand-primary);}
+	&.tiles-inverse 		{.info-tiles-variant(@brand-inverse);}
+	&.tiles-midnightblue 	{.info-tiles-variant(@brand-midnightblue)}
+	&.tiles-sky 			{.info-tiles-variant(@brand-sky);}
+	&.tiles-orange 			{.info-tiles-variant(@brand-orange)}; 
+	&.tiles-indigo 			{.info-tiles-variant(@brand-indigo)}; 
+	&.tiles-green 			{.info-tiles-variant(@brand-green);}
+	&.tiles-magenta  		{.info-tiles-variant(@brand-magenta);}
+	&.tiles-purple  		{.info-tiles-variant(@brand-purple);}
+	&.tiles-brown  			{.info-tiles-variant(@brand-brown);}
+	&.tiles-grape			{.info-tiles-variant(@brand-grape);}
+	&.tiles-toyo			{.info-tiles-variant(@brand-toyo);}
+	&.tiles-alizarin		{.info-tiles-variant(@brand-alizarin);}
+}
+
+.shortcut-tiles {
+	&.tiles-info 			{.shortcut-tiles-variant(@brand-info);}
+	&.tiles-success 		{.shortcut-tiles-variant(@brand-success);}
+	&.tiles-danger 			{.shortcut-tiles-variant(@brand-danger);}
+	&.tiles-warning 		{.shortcut-tiles-variant(@brand-warning);}
+	&.tiles-primary 		{.shortcut-tiles-variant(@brand-primary);}
+	&.tiles-inverse 		{.shortcut-tiles-variant(@brand-inverse);}
+	&.tiles-midnightblue 	{.shortcut-tiles-variant(@brand-midnightblue)}
+	&.tiles-sky 			{.shortcut-tiles-variant(@brand-sky);}
+	&.tiles-orange 			{.shortcut-tiles-variant(@brand-orange)}; 
+	&.tiles-indigo 			{.shortcut-tiles-variant(@brand-indigo)}; 
+	&.tiles-green 			{.shortcut-tiles-variant(@brand-green);}
+	&.tiles-magenta  		{.shortcut-tiles-variant(@brand-magenta);}
+	&.tiles-purple  		{.shortcut-tiles-variant(@brand-purple);}
+	&.tiles-brown  			{.shortcut-tiles-variant(@brand-brown);}
+	&.tiles-grape  			{.shortcut-tiles-variant(@brand-grape);}
+	&.tiles-toyo  			{.shortcut-tiles-variant(@brand-toyo);}
+	&.tiles-alizarin  		{.shortcut-tiles-variant(@brand-alizarin);}
+}

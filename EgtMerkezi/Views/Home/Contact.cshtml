@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "İletişim";
+}
+
+@model EgtMerkezi.Models.Oneri
+
+<div class="container">
+    <div class="page-title clearfix">
+        <div class="row">
+            <div class="col-md-12">
+                <h6><a href="Index">@EgtMerkezi.Resources.lang.AnaSayfa</a></h6>
+                <h6><span class="page-active">@EgtMerkezi.Resources.lang.Iletisim</span></h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="contact-map">
+                <div class="google-map-canvas" id="map-canvas" style="height: 590px;"></div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="contact-page-content">
+                <div class="contact-heading">
+                    <h3>@EgtMerkezi.Resources.lang.Iletisim</h3>
+                    <p>
+                        Sakarya Üniversitesi Esentepe Kampüsü 54187 Serdivan / SAKARYA<br>
+                        Tel: +90 (264) 295 54 54 <br>
+                        Fax: +90 (264) 295 54 54 <br>
+                        Eğitim Merkezi [ sabis@sakarya.edu.tr ]
+                    </p>
+                </div>
+                <div class="contact-form clearfix">
+                    @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        <p class="full-row">
+                            <span class="contact-label">
+                                <label for="name-id">@EgtMerkezi.Resources.lang.AdSoyad</label>
+                            </span>
+                            @Html.TextBoxFor(m => m.AdSoyad, new { placeholder = @EgtMerkezi.Resources.lang.AdSoyad })
+                        </p>
+                        <p class="full-row">
+                            <span class="contact-label">
+                                <label for="email-id">@EgtMerkezi.Resources.lang.Telefon</label>
+                            </span>
+                            @Html.TextBoxFor(m => m.Telefon, new { placeholder = @EgtMerkezi.Resources.lang.Telefon })
+                        </p>
+                        <p class="full-row">
+                            <span class="contact-label">
+                                <label for="email-id">@EgtMerkezi.Resources.lang.Eposta</label>
+                            </span>
+                            @Html.TextBoxFor(m => m.Eposta, new { placeholder = EgtMerkezi.Resources.lang.Eposta })
+                        </p>
+                        <p class="full-row">
+                            <span class="contact-label">
+                                <label for="message">@EgtMerkezi.Resources.lang.Mesaj</label>
+                            </span>
+                            @Html.TextAreaFor(m => m.Mesaj, new { placeholder = EgtMerkezi.Resources.lang.Mesaj, rows = 6 })
+                        </p>
+                        <p class="full-row">
+                            <input class="mainBtn" type="submit" name="" value="@EgtMerkezi.Resources.lang.Gonder">
+                            <label>@TempData["Mesaj"]</label>
+                        </p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function initialize() {
+
+        var myLatlng = new google.maps.LatLng(40.741223, 30.332890);
+        var mapOptions = {
+            zoom: 15,
+            center: myLatlng
+        }
+        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            animation: google.maps.Animation.DROP
+        });
+    }
+
+    function loadScript() {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
+            'callback=initialize';
+        document.body.appendChild(script);
+    }
+
+    window.onload = loadScript;
+</script>

@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EgitimMerkeziModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bilgilendirme">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdSoyad" Type="nvarchar" MaxLength="255" />
+    <Property Name="Telefon" Type="nvarchar" MaxLength="100" />
+    <Property Name="Eposta" Type="nvarchar" MaxLength="100" />
+    <Property Name="Kurslar" Type="nvarchar(max)" />
+    <Property Name="IstekTarihi" Type="datetime" />
+    <Property Name="Cevap" Type="nvarchar(max)" />
+    <Property Name="CevapTarihi" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Duyurular">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DuyuruBaslik" Type="nvarchar" MaxLength="255" />
+    <Property Name="Duyuru" Type="nvarchar(max)" />
+    <Property Name="DuyuruTarih" Type="datetime" />
+    <Property Name="Tarih" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Kurs">
+    <Key>
+      <PropertyRef Name="KursId" />
+    </Key>
+    <Property Name="KursId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KursTipId" Type="int" />
+    <Property Name="KursAd" Type="varchar" MaxLength="255" />
+    <Property Name="Aciklama" Type="varchar(max)" />
+    <Property Name="OgretimElemanId" Type="int" />
+    <Property Name="Sure" Type="varchar" MaxLength="255" />
+    <Property Name="Ucret" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="BaslangicTarihi" Type="datetime" />
+    <Property Name="BitisTarihi" Type="datetime" />
+    <Property Name="Foto" Type="image" />
+    <Property Name="ToplamSaat" Type="int" />
+  </EntityType>
+  <EntityType Name="KursOgrenci">
+    <Key>
+      <PropertyRef Name="KursOgenciId" />
+    </Key>
+    <Property Name="KursOgenciId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KursId" Type="int" />
+    <Property Name="OgrenciId" Type="int" />
+    <Property Name="KayitTarihi" Type="datetime" />
+    <Property Name="Ucret" Type="float" />
+  </EntityType>
+  <EntityType Name="KursTip">
+    <Key>
+      <PropertyRef Name="KursTipId" />
+    </Key>
+    <Property Name="KursTipId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KursKategoriAd" Type="varchar" MaxLength="50" />
+    <Property Name="Renk" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Ogrenci">
+    <Key>
+      <PropertyRef Name="OgrenciId" />
+    </Key>
+    <Property Name="OgrenciId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="varchar" MaxLength="50" />
+    <Property Name="Soyad" Type="varchar" MaxLength="50" />
+    <Property Name="Telefon" Type="varchar" MaxLength="15" />
+    <Property Name="Eposta" Type="varchar" MaxLength="30" />
+    <Property Name="DogumTarihi" Type="datetime" />
+    <Property Name="Sifre" Type="varchar" MaxLength="50" />
+    <Property Name="Role" Type="varchar" MaxLength="10" />
+    <Property Name="Aktivasyon" Type="varchar" MaxLength="50" />
+    <Property Name="Onay" Type="bit" />
+    <Property Name="KayitTarihi" Type="datetime" />
+  </EntityType>
+  <EntityType Name="OgrenciGorus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdSoyad" Type="nvarchar" MaxLength="100" />
+    <Property Name="Foto" Type="image" />
+    <Property Name="Gorus" Type="nvarchar(max)" />
+    <Property Name="Tarih" Type="datetime" />
+  </EntityType>
+  <EntityType Name="OgretimElemani">
+    <Key>
+      <PropertyRef Name="OgretimElemanId" />
+    </Key>
+    <Property Name="OgretimElemanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="varchar" MaxLength="50" />
+    <Property Name="Soyad" Type="varchar" MaxLength="50" />
+    <Property Name="Telefon" Type="varchar" MaxLength="15" />
+    <Property Name="Eposta" Type="varchar" MaxLength="30" />
+    <Property Name="Ozgecmis" Type="varchar(max)" />
+    <Property Name="Foto" Type="image" />
+  </EntityType>
+  <EntityType Name="Oneri">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdSoyad" Type="nvarchar" MaxLength="255" />
+    <Property Name="Telefon" Type="nvarchar" MaxLength="100" />
+    <Property Name="Eposta" Type="nvarchar" MaxLength="100" />
+    <Property Name="Mesaj" Type="varchar(max)" />
+    <Property Name="Tarih" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Slider">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SliderFoto" Type="image" />
+    <Property Name="SliderText" Type="nvarchar(max)" />
+    <Property Name="BaslangicTarih" Type="datetime" />
+    <Property Name="BitisTarih" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Kurs_KursTip">
+    <End Role="KursTip" Type="Self.KursTip" Multiplicity="0..1" />
+    <End Role="Kurs" Type="Self.Kurs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KursTip">
+        <PropertyRef Name="KursTipId" />
+      </Principal>
+      <Dependent Role="Kurs">
+        <PropertyRef Name="KursTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kurs_OgretimElemani">
+    <End Role="OgretimElemani" Type="Self.OgretimElemani" Multiplicity="0..1" />
+    <End Role="Kurs" Type="Self.Kurs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OgretimElemani">
+        <PropertyRef Name="OgretimElemanId" />
+      </Principal>
+      <Dependent Role="Kurs">
+        <PropertyRef Name="OgretimElemanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KursOgrenci_Kurs">
+    <End Role="Kurs" Type="Self.Kurs" Multiplicity="0..1" />
+    <End Role="KursOgrenci" Type="Self.KursOgrenci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kurs">
+        <PropertyRef Name="KursId" />
+      </Principal>
+      <Dependent Role="KursOgrenci">
+        <PropertyRef Name="KursId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KursOgrenci_Ogrenci">
+    <End Role="Ogrenci" Type="Self.Ogrenci" Multiplicity="0..1" />
+    <End Role="KursOgrenci" Type="Self.KursOgrenci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogrenci">
+        <PropertyRef Name="OgrenciId" />
+      </Principal>
+      <Dependent Role="KursOgrenci">
+        <PropertyRef Name="OgrenciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EgitimMerkeziModelStoreContainer">
+    <EntitySet Name="Bilgilendirme" EntityType="Self.Bilgilendirme" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Duyurular" EntityType="Self.Duyurular" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kurs" EntityType="Self.Kurs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KursOgrenci" EntityType="Self.KursOgrenci" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KursTip" EntityType="Self.KursTip" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ogrenci" EntityType="Self.Ogrenci" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OgrenciGorus" EntityType="Self.OgrenciGorus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OgretimElemani" EntityType="Self.OgretimElemani" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Oneri" EntityType="Self.Oneri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Slider" EntityType="Self.Slider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Kurs_KursTip" Association="Self.FK_Kurs_KursTip">
+      <End Role="KursTip" EntitySet="KursTip" />
+      <End Role="Kurs" EntitySet="Kurs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kurs_OgretimElemani" Association="Self.FK_Kurs_OgretimElemani">
+      <End Role="OgretimElemani" EntitySet="OgretimElemani" />
+      <End Role="Kurs" EntitySet="Kurs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KursOgrenci_Kurs" Association="Self.FK_KursOgrenci_Kurs">
+      <End Role="Kurs" EntitySet="Kurs" />
+      <End Role="KursOgrenci" EntitySet="KursOgrenci" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KursOgrenci_Ogrenci" Association="Self.FK_KursOgrenci_Ogrenci">
+      <End Role="Ogrenci" EntitySet="Ogrenci" />
+      <End Role="KursOgrenci" EntitySet="KursOgrenci" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
